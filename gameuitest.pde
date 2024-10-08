@@ -5,6 +5,10 @@ import java.util.ArrayList;
 public float xShift;
 public float yShift;
 
+int isKeyPressed = 0;
+
+public int debugAchievement = 0;
+
 public float scrollValue;
 public float scrollAcc;
 
@@ -21,6 +25,7 @@ public int unclickedTime = 1199;
 public SoundFile sfx1;
 public SoundFile menu;
 public SoundFile clksfx;
+public SoundFile acsfx;
 
 public float gtest;
 public graphThing gr;
@@ -32,6 +37,9 @@ public scoreBoard sc;
 public idleAlert al;
 
 public achievements acStack[];
+public int achievementLayer = 0;
+
+public acCheck chk = new acCheck();
 
 void setup()
 {
@@ -62,6 +70,8 @@ void setup()
   sfx1 = new SoundFile(this, "sfx1.wav");
   menu = new SoundFile(this, "menutheme_f.wav");
   clksfx = new SoundFile(this, "clicksfx.wav");
+  acsfx = new SoundFile(this, "ac_get.wav");
+  
   
   save.setInt("buffer", save.getInt("buffer") + 1);
   
@@ -72,9 +82,14 @@ void setup()
   gr = new graphThing();
   al = new idleAlert();
   
-  acStack = new achievements[4];
+  acStack = new achievements[achievementCount];
   
-  acStack[0] = new achievements();
+  for(int i = 0; i < achievementCount; i++)
+  {
+    acStack[i] = new achievements();
+  }
+  
+  
   
 }
 
@@ -101,7 +116,16 @@ void draw()
     al.showComp();
   }
   
-  acStack[0].check();
+  
+  
+  for(int i = 0; i < achievementCount; i++)
+  {
+    if(chk.check(i) == 1)
+    {
+      acStack[i].showComp(achievementList.get(i), i);
+      ++achievementLayer;
+    }
+  }
   
   fill(49, 164, 255);
   
@@ -117,6 +141,28 @@ void draw()
   textAlign(CENTER, CENTER);
   text("스크롤해서 텍스트 움직이기\nScroll to move this text", width / 2 + xShift / 50, height / 2 + yShift / 50 + 200 + scrollValue);
   
+  if(keyPressed)
+  {
+    if((key == ' ' || key == ENTER) && isKeyPressed == 0)
+    {
+      System.out.println("spClk");
+      sc.addi();
+      clksfx.play();
+      unclickedTime = 0;
+      isKeyPressed = 1;
+    }
+    else if(key == 'c')
+    {
+      debugAchievement = 0;
+      acSave.setBoolean(5 + "", false);
+      debugAchievement = 1;
+    }
+  }
+  else
+  {
+    isKeyPressed = 0; 
+  }
+  
 }
 
 void mouseClicked()
@@ -127,17 +173,14 @@ void mouseClicked()
   unclickedTime = 0;
 }
 
+
+
 void keyPressed()
 {
   if(key == ESC) key = 0;
-  else if(key == ' ' || key == ENTER)
-  {
-    System.out.println("spClk");
-    sc.addi();
-    clksfx.play();
-    unclickedTime = 0;
-  }
 }
+
+
 
 void mouseWheel(MouseEvent event)
 {

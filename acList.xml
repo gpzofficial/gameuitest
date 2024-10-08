@@ -1,7 +1,9 @@
 <?xml version = "1.0"?>
-<achievements count = "4">
-    <list id = "0">10000번 클릭하기</list>
-    <list id = "1">20000번 클릭하기</list>
-    <list id = "2">40000번 클릭하기</list>
-    <list id = "3">80000번 클릭하기</list>
+<achievements count = "6">
+    <list id = "0">1000번 클릭하기</list>
+    <list id = "1">3000번 클릭하기</list>
+    <list id = "2">6000번 클릭하기</list>
+    <list id = "3">10000번 클릭하기</list>
+    <list id = "4">10분간 누르지 않기</list>
+    <list id = "5">디버그용 업적 굳이 눌러보기</list>
 </achievements>

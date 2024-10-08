@@ -1,7 +1,7 @@
 public class achievements
 {
   private String acName;
-  private String acDesc;
+  private int acNo;
   
   private float xPos;
   private float yPos;
@@ -36,8 +36,9 @@ public class achievements
       if(opacity <= 0)
       {
         opacity = 0;
-        acSave.setBoolean("0", true);
+        acSave.setBoolean(acNo + "", true);
         System.out.println("achievements value set to true");
+        achievementLayer--;
         isOnScreen = 0;
         return;
         
@@ -76,7 +77,7 @@ public class achievements
     
   }
   
-  public int showComp(String name)
+  public int showComp(String name, int acNo)
   {
     
     
@@ -88,6 +89,8 @@ public class achievements
       whiteVal = 255;
       xPos = 470;
       acName = name;
+      this.acNo = acNo;
+      acsfx.play();
     }
     
     composition();
@@ -102,12 +105,6 @@ public class achievements
     isOnScreen = 0;
   }
   
-  public void check()
-  {
-    if(acSave.getBoolean("0") == false && sc.getScore() >= 20)
-    {
-      
-      showComp(achievementList.get(0));
-    }
-  }
+  
+  //showComp(achievementList.get(0));
 }

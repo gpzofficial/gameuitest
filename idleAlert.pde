@@ -30,9 +30,9 @@ public class idleAlert
     }
     
     textSize(10);
-    textAlign(LEFT, TOP);
+    textAlign(CENTER, CENTER);
     fill(49, 164, 255);
-    text("화면을 클릭하거나 스페이스 바를 눌러 득점하기\nClick or press Space bar to earn points", -20 + fSize + (mouseX - (float)width / 2) / (float)50, 50 + (mouseY - (float)height / 2) / (float)50);
+    text("화면을 클릭하거나 스페이스 바를 눌러 득점하기\nClick or press Space bar to earn points", width / 2 + (mouseX - (float)width / 2) / (float)50, height / 2 + 10 + (mouseY - (float)height / 2) / (float)50);
     
     save.setInt("score", score);
     

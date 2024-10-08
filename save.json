@@ -1,5 +1,12 @@
 {
-  "score": 41,
-  "achievements": {"0": true},
-  "buffer": 29
+  "score": 377,
+  "achievements": {
+    "0": true,
+    "1": false,
+    "2": false,
+    "3": false,
+    "4": true,
+    "5": true
+  },
+  "buffer": 55
 }
